@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+【】对象关系映射 配置 
+ @author AutoCode 309444359@qq.com
+ @date 2017-10-26 16:47:51
+ -->
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.bluemobi.dao.trend.TrendRegionDao">
+
+	<resultMap id="trendRegionResultMap" type="com.bluemobi.po.trend.TrendRegion">
+       <result property="regionId" column="REGION_ID" jdbcType="DECIMAL"/>
+       <result property="pack" column="PACK" jdbcType="VARCHAR"/>
+       <result property="pid" column="PID" jdbcType="DECIMAL"/>
+       <result property="hid" column="HID" jdbcType="VARCHAR"/>
+       <result property="grade" column="GRADE" jdbcType="DECIMAL"/>
+       <result property="regionName" column="REGION_NAME" jdbcType="VARCHAR"/>
+       <result property="enName" column="EN_NAME" jdbcType="VARCHAR"/>
+       <result property="p1" column="P_1" jdbcType="VARCHAR"/>
+       <result property="p2" column="P_2" jdbcType="VARCHAR"/>
+       <result property="sortOrder" column="SORT_ORDER" jdbcType="DECIMAL"/>
+       <result property="status" column="STATUS" jdbcType="DECIMAL"/>
+	</resultMap>
+	<resultMap id="mapResultMap"  type="java.util.HashMap" extends="trendRegionResultMap"></resultMap>
+	<resultMap id="pageResultMap"  type="java.util.HashMap" extends="trendRegionResultMap"></resultMap>
+	
+	<!-- 插入一条数据，需要在数据库中，创建表相关的序列，为了业务需求返回主键，不建触发器 -->
+	<insert id="insert" parameterType="com.bluemobi.po.trend.TrendRegion">
+		insert into TREND_REGION (
+			REGION_ID,
+			PACK,
+			PID,
+			HID,
+			GRADE,
+			REGION_NAME,
+			EN_NAME,
+			P_1,
+			P_2,
+			SORT_ORDER,
+			STATUS
+		)values (
+			 #{regionId,jdbcType=DECIMAL},
+			 #{pack,jdbcType=VARCHAR},
+			 #{pid,jdbcType=DECIMAL},
+			 #{hid,jdbcType=VARCHAR},
+			 #{grade,jdbcType=DECIMAL},
+			 #{regionName,jdbcType=VARCHAR},
+			 #{enName,jdbcType=VARCHAR},
+			 #{p1,jdbcType=VARCHAR},
+			 #{p2,jdbcType=VARCHAR},
+			 #{sortOrder,jdbcType=DECIMAL},
+			 #{status,jdbcType=DECIMAL}
+		)
+	</insert>
+
+	<!-- 根据主键查询 修改条目相关信息-->
+	<update id="update" parameterType="com.bluemobi.po.trend.TrendRegion">
+		update TREND_REGION
+		<set>
+			<if test="regionId != null">
+				REGION_ID = #{regionId,jdbcType=DECIMAL},
+			</if>
+			<if test="pack != null">
+				PACK = #{pack,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				PID = #{pid,jdbcType=DECIMAL},
+			</if>
+			<if test="hid != null">
+				HID = #{hid,jdbcType=VARCHAR},
+			</if>
+			<if test="grade != null">
+				GRADE = #{grade,jdbcType=DECIMAL},
+			</if>
+			<if test="regionName != null">
+				REGION_NAME = #{regionName,jdbcType=VARCHAR},
+			</if>
+			<if test="enName != null">
+				EN_NAME = #{enName,jdbcType=VARCHAR},
+			</if>
+			<if test="p1 != null">
+				P_1 = #{p1,jdbcType=VARCHAR},
+			</if>
+			<if test="p2 != null">
+				P_2 = #{p2,jdbcType=VARCHAR},
+			</if>
+			<if test="sortOrder != null">
+				SORT_ORDER = #{sortOrder,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=DECIMAL},
+			</if>
+		</set>
+		<where>
+		</where>
+	</update>
+
+	<!-- 根据表主键删除条目，确保逻辑删除字段为 is_del（0：未删除，1：已删除） -->
+	<update id="delete" parameterType="map">
+		update TREND_REGION 
+		SET
+			is_del = 1	 
+	   where 1=1
+	</update>
+
+	<!-- 根据主键查询 相关数据信息-->
+	<select id="selectObject" parameterType="map" resultMap="trendRegionResultMap">
+		select 
+		REGION_ID,
+		PACK,
+		PID,
+		HID,
+		GRADE,
+		REGION_NAME,
+		EN_NAME,
+		P_1,
+		P_2,
+		SORT_ORDER,
+		STATUS
+		from TREND_REGION
+		where 
+	</select>
+	
+	<!-- 根据相关字段 查询符合条件的数据信息 返回相关集合 -->
+	<select id="selectObjectList" parameterType="map" resultMap="trendRegionResultMap">
+		select 
+		REGION_ID,
+		PACK,
+		PID,
+		HID,
+		GRADE,
+		REGION_NAME,
+		EN_NAME,
+		P_1,
+		P_2,
+		SORT_ORDER,
+		STATUS
+		from TREND_REGION
+	   <where>
+	     <if test="regionId != null">
+	        REGION_ID=#{regionId}
+	     </if>
+	     <if test="pack != null">
+	       and PACK=#{pack}
+	     </if>
+	     <if test="pid != null">
+	       and PID=#{pid}
+	     </if>
+	     <if test="hid != null">
+	       and HID=#{hid}
+	     </if>
+	     <if test="grade != null">
+	       and GRADE=#{grade}
+	     </if>
+	     <if test="regionName != null">
+	       and REGION_NAME=#{regionName}
+	     </if>
+	     <if test="enName != null">
+	       and EN_NAME=#{enName}
+	     </if>
+	     <if test="p1 != null">
+	       and P_1=#{p1}
+	     </if>
+	     <if test="p2 != null">
+	       and P_2=#{p2}
+	     </if>
+	     <if test="sortOrder != null">
+	       and SORT_ORDER=#{sortOrder}
+	     </if>
+	     <if test="status != null">
+	       and STATUS=#{status}
+	     </if>
+	   </where>
+	   order by REGION_ID
+	</select>
+
+	<select id="selectMap" parameterType="map" resultMap="mapResultMap">
+		select 
+			REGION_ID,
+			PACK,
+			PID,
+			HID,
+			GRADE,
+			REGION_NAME,
+			EN_NAME,
+			P_1,
+			P_2,
+			SORT_ORDER,
+			STATUS
+		from TREND_REGION
+		where 
+	</select>
+
+	<select id="selectMapList" parameterType="map" resultMap="mapResultMap">
+		select 
+	    REGION_ID,
+	    PACK,
+	    PID,
+	    HID,
+	    GRADE,
+	    REGION_NAME,
+	    EN_NAME,
+	    P_1,
+	    P_2,
+	    SORT_ORDER,
+	    STATUS
+		from TREND_REGION
+	   <where>
+	     <if test="regionId != null">
+	        REGION_ID=#{regionId}
+	     </if>
+	     <if test="pack != null">
+	       and PACK=#{pack}
+	     </if>
+	     <if test="pid != null">
+	       and PID=#{pid}
+	     </if>
+	     <if test="hid != null">
+	       and HID=#{hid}
+	     </if>
+	     <if test="grade != null">
+	       and GRADE=#{grade}
+	     </if>
+	     <if test="regionName != null">
+	       and REGION_NAME=#{regionName}
+	     </if>
+	     <if test="enName != null">
+	       and EN_NAME=#{enName}
+	     </if>
+	     <if test="p1 != null">
+	       and P_1=#{p1}
+	     </if>
+	     <if test="p2 != null">
+	       and P_2=#{p2}
+	     </if>
+	     <if test="sortOrder != null">
+	       and SORT_ORDER=#{sortOrder}
+	     </if>
+	     <if test="status != null">
+	       and STATUS=#{status}
+	     </if>
+	   </where>
+	</select>
+	
+	<select id="page" parameterType="map" resultMap="pageResultMap">
+		select * from(
+            select * from (
+				select
+				REGION_ID,
+				PACK,
+				PID,
+				HID,
+				GRADE,
+				REGION_NAME,
+				EN_NAME,
+				P_1,
+				P_2,
+				SORT_ORDER,
+				STATUS,
+				rownum r
+	       <include refid="pageCondition" />
+	   <![CDATA[
+	        )
+	        where r <= #{offset}+#{rows}
+	   )
+       where r > #{offset}
+       ]]>
+	</select>
+
+	<select id="pageCount" parameterType="map" resultType="int">
+		select count(1)
+	   <include refid="pageCondition" />
+	</select>
+
+	<sql id="pageCondition">
+		from TREND_REGION
+		where 1 = 1
+	     <if test="regionId != null">
+			and REGION_ID=#{regionId}
+	     </if>
+	     <if test="pack != null">
+			and PACK=#{pack}
+	     </if>
+	     <if test="pid != null">
+			and PID=#{pid}
+	     </if>
+	     <if test="hid != null">
+			and HID=#{hid}
+	     </if>
+	     <if test="grade != null">
+			and GRADE=#{grade}
+	     </if>
+	     <if test="regionName != null">
+			and REGION_NAME=#{regionName}
+	     </if>
+	     <if test="enName != null">
+			and EN_NAME=#{enName}
+	     </if>
+	     <if test="p1 != null">
+			and P_1=#{p1}
+	     </if>
+	     <if test="p2 != null">
+			and P_2=#{p2}
+	     </if>
+	     <if test="sortOrder != null">
+			and SORT_ORDER=#{sortOrder}
+	     </if>
+	     <if test="status != null">
+			and STATUS=#{status}
+	     </if>
+	</sql>
+
+	
+</mapper> 

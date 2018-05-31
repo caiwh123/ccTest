@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+【属性资源表】对象关系映射 配置 
+ @author AutoCode 309444359@qq.com
+ @date 2015-07-30 10:42:29
+ -->
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.bluemobi.dao.trend.TrendPropertyDao">
+
+	<resultMap id="trendPropertyResultMap" type="com.bluemobi.po.trend.TrendProperty">
+		<id property="propertyId" column="property_id" />
+		<result property="name" column="name" />
+		<result property="valInputtype" column="val_inputtype" />
+		<result property="labelName" column="label_name" />
+		<result property="placeholder" column="placeholder" />
+		<result property="note" column="note" />
+		<result property="sortOrder" column="sort_order" />
+		<result property="isSpec" column="is_spec" />
+		<result property="status" column="status" />
+	</resultMap>
+	<resultMap id="mapResultMap"  type="java.util.HashMap" extends="trendPropertyResultMap"></resultMap>
+	<resultMap id="pageResultMap"  type="java.util.HashMap" extends="trendPropertyResultMap">
+		<result property="propertyValues" column="property_values" />
+	</resultMap>
+	
+	
+	<insert id="insert" parameterType="com.bluemobi.po.trend.TrendProperty" useGeneratedKeys="true" keyProperty="propertyId">
+	
+	   insert into trend_property (
+	     property_id,
+	     name,
+	     val_inputtype,
+	     label_name,
+	     placeholder,
+	     note,
+	     sort_order,
+	     is_spec,
+	     status
+	   )values (
+	     #{propertyId},
+	     #{name},
+	     #{valInputtype},
+	     #{labelName},
+	     #{placeholder},
+	     #{note},
+	     #{sortOrder},
+	     #{isSpec},
+	     #{status}
+	   )
+	</insert>
+
+	<update id="update" parameterType="com.bluemobi.po.trend.TrendProperty">
+	   update trend_property
+        <set>
+            <if test="propertyId != null">
+                property_id=#{propertyId},
+            </if>
+            <if test="name != null">
+                name=#{name},
+            </if>
+            <if test="valInputtype != null">
+                val_inputtype=#{valInputtype},
+            </if>
+            <if test="labelName != null">
+                label_name=#{labelName},
+            </if>
+            <if test="placeholder != null">
+                placeholder=#{placeholder},
+            </if>
+            <if test="note != null">
+                note=#{note},
+            </if>
+            <if test="sortOrder != null">
+                sort_order=#{sortOrder},
+            </if>
+            <if test="isSpec != null">
+                is_spec=#{isSpec},
+            </if>
+            <if test="status != null">
+                status=#{status},
+            </if>
+        </set>
+        <where>
+            property_id=#{propertyId} 
+        </where>
+	</update>
+
+	<delete id="delete" parameterType="map">
+	   delete from 
+	     trend_property 
+	   where 
+	    property_id=#{propertyId} 
+	</delete>
+
+	<select id="selectObject" parameterType="map" resultMap="trendPropertyResultMap">
+	   select 
+	    property_id,
+	    name,
+	    val_inputtype,
+	    label_name,
+	    placeholder,
+	    note,
+	    sort_order,
+	    is_spec,
+	    status
+	   from trend_property
+	   where 
+	    property_id=#{propertyId} 
+	</select>
+	
+	<select id="selectObjectList" parameterType="map" resultMap="trendPropertyResultMap">
+	   select 
+	     property_id,
+	     name,
+	     val_inputtype,
+	     label_name,
+	     placeholder,
+	     note,
+	     sort_order,
+	     is_spec,
+	     status
+	   from trend_property
+	   <where>
+	     <if test="propertyId != null">
+	        property_id=#{propertyId}
+	     </if>
+	     <if test="name != null">
+	        and name=#{name}
+	     </if>
+	     <if test="valInputtype != null">
+	        and val_inputtype=#{valInputtype}
+	     </if>
+	     <if test="labelName != null">
+	        and label_name=#{labelName}
+	     </if>
+	     <if test="placeholder != null">
+	        and placeholder=#{placeholder}
+	     </if>
+	     <if test="note != null">
+	        and note=#{note}
+	     </if>
+	     <if test="sortOrder != null">
+	        and sort_order=#{sortOrder}
+	     </if>
+	     <if test="isSpec != null">
+	        and is_spec=#{isSpec}
+	     </if>
+	     <if test="status != null">
+	        and status=#{status}
+	     </if>
+	   </where>
+	</select>
+
+	<select id="selectMap" parameterType="map" resultMap="mapResultMap">
+	   select 
+	    property_id,
+	    name,
+	    val_inputtype,
+	    label_name,
+	    placeholder,
+	    note,
+	    sort_order,
+	    is_spec,
+	    status
+	   from trend_property
+	   where 
+	    property_id=#{propertyId} 
+	</select>
+	
+	<select id="selectMapList" parameterType="map" resultMap="mapResultMap">
+	   select 
+	     property_id,
+	     name,
+	     val_inputtype,
+	     label_name,
+	     placeholder,
+	     note,
+	     sort_order,
+	     is_spec,
+	     status
+	   from trend_property
+	   <where>
+	     <if test="propertyId != null">
+	        property_id=#{propertyId}
+	     </if>
+	     <if test="name != null">
+	        and name=#{name}
+	     </if>
+	     <if test="valInputtype != null">
+	        and val_inputtype=#{valInputtype}
+	     </if>
+	     <if test="labelName != null">
+	        and label_name=#{labelName}
+	     </if>
+	     <if test="placeholder != null">
+	        and placeholder=#{placeholder}
+	     </if>
+	     <if test="note != null">
+	        and note=#{note}
+	     </if>
+	     <if test="sortOrder != null">
+	        and sort_order=#{sortOrder}
+	     </if>
+	     <if test="isSpec != null">
+	        and is_spec=#{isSpec}
+	     </if>
+	     <if test="status != null">
+	        and status=#{status}
+	     </if>
+	   </where>
+	</select>
+	
+	<select id="page" parameterType="map" resultMap="pageResultMap">
+	   select 
+	     p.property_id,
+	     p.name,
+	     p.val_inputtype,
+	     p.label_name,
+	     p.placeholder,
+	     p.note,
+	     p.sort_order,
+	     p.is_spec,
+	     p.status,
+	     group_concat(v.property_value) property_values 
+	   <include refid="pageCondition" />
+        limit #{offset},#{rows}
+	</select>
+	
+	<select id="pageCount" parameterType="map" resultType="int">
+        select count(1) from
+        (
+            select 1 
+	        <include refid="pageCondition" />
+        ) t
+    </select>
+	
+	<sql id="pageCondition">
+	   from trend_property p,trend_property_value v
+       <where>
+            p.property_id = v.property_id
+         <if test="propertyId != null">
+            and p.property_id=#{propertyId}
+         </if>
+         <if test="name != null">
+            and p.name=#{name}
+         </if>
+         <if test="valInputtype != null">
+            and p.val_inputtype=#{valInputtype}
+         </if>
+         <if test="labelName != null">
+            and p.label_name=#{labelName}
+         </if>
+         <if test="placeholder != null">
+            and p.placeholder=#{placeholder}
+         </if>
+         <if test="note != null">
+            and p.note=#{note}
+         </if>
+         <if test="sortOrder != null">
+            and p.sort_order=#{sortOrder}
+         </if>
+         <if test="isSpec != null">
+            and p.is_spec=#{isSpec}
+         </if>
+         <if test="status != null">
+            and p.status=#{status}
+         </if>
+       </where>
+       group by 
+                v.property_id
+	</sql>
+	
+</mapper> 

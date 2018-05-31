@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+【】对象关系映射 配置 
+ @author AutoCode 309444359@qq.com
+ @date 2017-10-17 16:44:07
+ -->
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.bluemobi.dao.sys.SysUserRoleDao">
+
+	<resultMap id="sysUserRoleResultMap" type="com.bluemobi.po.sys.SysUserRole">
+		<id property="userId" column="USER_ID" jdbcType="VARCHAR" />
+       <result property="roleId" column="ROLE_ID" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id="mapResultMap"  type="java.util.HashMap" extends="sysUserRoleResultMap"></resultMap>
+	<resultMap id="pageResultMap"  type="java.util.HashMap" extends="sysUserRoleResultMap"></resultMap>
+	
+	<!-- 插入一条数据，需要在数据库中，创建表相关的序列，为了业务需求返回主键，不建触发器 -->
+	<insert id="insert" parameterType="com.bluemobi.po.sys.SysUserRole">
+		insert into SYS_USER_ROLE (
+			USER_ID,
+			ROLE_ID
+		)values (
+			 #{userId,jdbcType=VARCHAR},
+			 #{roleId,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<!-- 根据主键查询 修改条目相关信息-->
+	<update id="update" parameterType="com.bluemobi.po.sys.SysUserRole">
+		update SYS_USER_ROLE
+		<set>
+			<if test="userId != null">
+				USER_ID = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="roleId != null">
+				ROLE_ID = #{roleId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<where>
+			 USER_ID=#{userId} 
+		</where>
+	</update>
+
+	<!-- 根据表主键删除条目，确保逻辑删除字段为 is_del（0：未删除，1：已删除） -->
+	<update id="delete" parameterType="map">
+		update SYS_USER_ROLE 
+		SET
+			is_del = 1	 
+	   where 1=1
+	   and USER_ID=#{userId} 
+	</update>
+
+	<!-- 根据主键查询 相关数据信息-->
+	<select id="selectObject" parameterType="map" resultMap="sysUserRoleResultMap">
+		select 
+		USER_ID,
+		ROLE_ID
+		from SYS_USER_ROLE
+		where 
+	    USER_ID=#{userId} 
+	</select>
+	
+	<!-- 根据相关字段 查询符合条件的数据信息 返回相关集合 -->
+	<select id="selectObjectList" parameterType="map" resultMap="sysUserRoleResultMap">
+		select 
+		USER_ID,
+		ROLE_ID
+		from SYS_USER_ROLE
+	   <where>
+	     <if test="userId != null">
+	        USER_ID=#{userId}
+	     </if>
+	     <if test="roleId != null">
+	       and ROLE_ID=#{roleId}
+	     </if>
+	   </where>
+	</select>
+
+	<select id="selectMap" parameterType="map" resultMap="mapResultMap">
+		select 
+			USER_ID,
+			ROLE_ID
+		from SYS_USER_ROLE
+		where 
+	    USER_ID=#{userId} 
+	</select>
+
+	<select id="selectMapList" parameterType="map" resultMap="mapResultMap">
+		select 
+	    USER_ID,
+	    ROLE_ID
+		from SYS_USER_ROLE
+	   <where>
+	     <if test="userId != null">
+	        USER_ID=#{userId}
+	     </if>
+	     <if test="roleId != null">
+	       and ROLE_ID=#{roleId}
+	     </if>
+	   </where>
+	</select>
+	
+	<select id="page" parameterType="map" resultMap="pageResultMap">
+		select * from(
+            select * from (
+				select
+				USER_ID,
+				ROLE_ID,
+				rownum r
+	       <include refid="pageCondition" />
+	   <![CDATA[
+	        )
+	        where r <= #{offset}+#{rows}
+	   )
+       where r > #{offset}
+       ]]>
+	</select>
+
+	<select id="pageCount" parameterType="map" resultType="int">
+		select count(1)
+	   <include refid="pageCondition" />
+	</select>
+
+	<sql id="pageCondition">
+		from SYS_USER_ROLE
+		where 1 = 1
+	     <if test="userId != null">
+			and USER_ID=#{userId}
+	     </if>
+	     <if test="roleId != null">
+			and ROLE_ID=#{roleId}
+	     </if>
+	</sql>
+
+	
+</mapper> 

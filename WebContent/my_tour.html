@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>我的游览</title>
+    <script src="js/url.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" href="css/global.css" />
+    <script type="text/javascript">
+    function getQueryString(name) {
+     	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+     	var r = window.location.search.substr(1).match(reg);
+     	if (r != null)
+     		return unescape(r[2]);
+     	return null;
+    }
+    var userId = getQueryString("userId");
+    var midstr = '';
+    function initList(){	
+    	$.ajax({
+    		type : "post",
+    		url :  BASE_URL+'/f/app/personal/selectMyViewList',
+    		data : {
+    			    userId:userId,
+    			    pageSize:1000,
+    			    pageIndex:1
+    		       },
+    		dataType : "text",
+    		success : function (data) {
+    			try {
+    				var data = JSON.parse(data);
+    				var datalist = data.data.dataList;
+    				if(datalist != null&&datalist!=''){
+    					for(var i=0;i<datalist.length;i++){
+    						var imgList = datalist[i].optionImageList;
+            				midstr = midstr+'<li>';
+            				midstr = midstr+'<div class="data">';
+            				midstr = midstr+'<p>'+datalist[i].optinDate+'<span></span></p>';
+            				midstr = midstr+'</div>';
+            				midstr = midstr+'<div class="info">';
+            				midstr = midstr+'<img onclick="tourDetail(\''+imgList+'\')" src="'+datalist[i].optionImageList[0]+'" alt="" />';
+            				midstr = midstr+'<p class="ellipsis2">'+datalist[i].optionAddress+'</p>';
+            				midstr = midstr+'<p>共'+datalist[i].optionImageList.length+'张</p>';
+            				midstr = midstr+'</div>';
+            				midstr = midstr+'</li>';
+    					}
+        				$(".my_tour").html(midstr);
+    				}
+    				return;
+    			}
+    			catch (e) {
+    				alert(e);
+    			}
+    		}
+    	});
+    } 
+    function tourDetail(imgList){
+    	localStorage.setItem("imgList",imgList);//用户id
+    	window.location.href="tour_detail.html";
+    }
+    initList();
+    </script>
+</head>
+<body style="background: #f5f5f5;">
+	<!-- <header class="header">
+		<a href=""></a>
+		<span>我的浏览</span>
+		<a href=""></a>
+	</header> -->
+	<ul class="my_tour">
+		
+	</ul>
+</body>
+</html>

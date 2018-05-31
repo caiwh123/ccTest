@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>我的游览详情</title>
+    <script src="js/url.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" href="css/global.css" />
+</head>
+<body style="background: #f5f5f5;">
+	<header class="header">
+		<a href=""></a>
+		<span>我的浏览详情</span>
+	</header>
+	<ul class="my_tour">
+		<li>	
+			<div class="info">
+				
+			</div>
+		</li>
+	</ul>
+</body>
+<script type="text/javascript">
+    var imgList = localStorage.getItem("imgList");
+    var imgs = imgList.split(",");
+    var midStr = '';
+    if(imgs!=null&&imgs!=''){
+    	for(var i=0;i<imgs.length;i++){
+    		midStr = midStr + '<img src="'+imgs[i]+'" alt="" />';
+        }
+    	$(".info").html(midStr);
+    }
+    
+    </script>
+</html>

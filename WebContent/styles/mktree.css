@@ -1,0 +1,13 @@
+ul.mktree  li { list-style: none; font-size:12px; } 
+ul.mktree, ul.mktree ul{ background: none; padding: 0; }
+ul.mktree li { clear: both; margin: 2px 0; padding: 0;}
+ul.mktree  li           .bullet { padding-left: 14px; line-height:20px; height:20px; float:left;}
+ul.mktree  li.liOpen    .bullet { cursor: pointer; background: url(../images/minus.gif)  center left no-repeat; }
+ul.mktree  li.liClosed  .bullet { cursor: pointer; background: url(../images/plus.gif)   center left no-repeat; }
+ul.mktree  li.liBullet  .bullet { cursor: default; background: url(../images/bullet.gif) center left no-repeat; }
+.liServer { background: url(../images/ico_tServer.png) left center no-repeat; padding:2px 0 2px 20px; line-height:20px;}
+.liIP { background: url(../images/ico_tComputer.png) left center no-repeat; padding:2px 0 2px 20px; line-height:20px;}
+.liService{ background: url(../images/ico_tService.png) left center no-repeat; padding:2px 0 2px 20px; line-height:20px;}
+.liPro{ background: url(../images/ico_tProfession.png) left center no-repeat; padding:2px 0 2px 20px; line-height:20px;}
+ul.mktree  li.liOpen    ul { display: block; }
+ul.mktree  li.liClosed  ul { display: none; }

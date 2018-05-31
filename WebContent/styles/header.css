@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* Created 2011-3-26, Designer Peng Zhang, Version of 1.0 */
+
+/* Header Style| 导航条样式 */
+
+#header{
+	background: url(../images/top_bg.gif) repeat-x left top; 
+	float: left; 
+	height: 96px;
+	width: 100%;
+	margin:0px auto;
+}
+#logo{
+	background: url(../img/logo.png) no-repeat 10px top;
+	float: left;
+	height: 84px;
+	width: 100%;
+	margin:0px auto;
+}
+.loginfo{
+	background: url(../images/loginfo_bg.png) no-repeat center top;
+	float: right;
+	line-height: 24px;
+	margin: 10px;
+	text-align: center;
+	width: 220px;
+}
+.nav{ float: right; height: 30px; margin-top: 10px; width: 100%;}
+.nav ul{ float: right; margin: 0; width: 600px;}
+.nav li{ float: right; line-height: 30px; margin: 0 5px; text-align: center; width: 110px}
+.nav a{ color: #666; display: block; font-size: 14px;}
+.nav a.current{ color: #fff; background: url(../images/nav_focus.png) no-repeat left top;}

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name = "format-detection" content = "telephone=no">
+		<title>横店影视城</title>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer/layer.js"></script>
+		<script src="js/url.js"></script>
+	</head>
+	<style type="text/css">
+		html{overflow-y: auto;overflow-x: hidden;font-size: 16px;}
+		body{font-family:"Microsoft Yahei",STXihei,hei;color: #333;background-color: #f5f5f5;}
+		* {box-sizing: border-box;margin: 0;padding: 0;}
+		img{border:0;margin: 0;}
+		
+		textarea,
+		input,
+		code {
+			font-family: "Microsoft YaHei" !important;
+		}
+		a {	
+			text-decoration: none;
+			color: #333;
+			cursor: pointer;
+			outline: none !important;
+		}
+		
+		a,
+		a:focus {
+			text-decoration: none;
+			color: #333;
+			outline: none;
+		}
+		ul,
+		li {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+		input,
+		button {
+			border: none;
+			background: none;
+			outline: none;
+			margin: 0;
+		}
+		
+		input {
+			box-sizing: border-box;
+			line-height: normal;
+		}
+		
+		input[type="text"],
+		input[type="password"],
+		input[type="tel"],
+		input[type="number"] ,
+		textarea{
+			margin: 0;
+			outline-style: none;
+			border: none;
+		}
+		
+		i,
+		em,
+		u{ 
+			font-style: normal;
+			text-decoration: none;
+		}
+		
+		/*REM适配*/
+		@media only screen and (min-width: 320px) {
+		  html {
+		    font-size: 14.22px;
+		  }
+		}
+		@media only screen and (min-width: 360px) {
+		  html {
+		    font-size: 16px;
+		  }
+		}
+		@media only screen and (min-width: 375px) {
+		  html {
+		    font-size: 16.66px;
+		  }
+		}
+		@media only screen and (min-width: 411px) {
+		  html {
+		    font-size: 18.27px;
+		  }
+		}
+		@media only screen and (min-width: 414px) {
+		  html {
+		    font-size: 18.4px;
+		  }
+		}
+		@media only screen and (min-width: 540px) {
+		  html {
+		    font-size: 24px;
+		  }
+		}
+		@media only screen and (min-width: 621px) {
+		  html {
+		    font-size: 27.73px;
+		  }
+		}
+		@media only screen and (min-width: 640px) {
+		  html {
+		    font-size: 28.44px;
+		  }
+		}
+		@media only screen and (min-width: 750px) {
+		  html {
+		    font-size: 33.33px;
+		  }
+		}
+		@media only screen and (min-width: 768px) {
+		  html {
+		    font-size: 34.13px;
+		  }
+		}
+        .register{width: 100%;padding: 0.625rem;}
+        .register li{width: 100%;height: 2.75rem;border-radius: 1.375rem;background: #fff;margin-bottom: 0.625rem;float: left;}
+        .register li i{height: 1.125rem;display: inline-block;float:left;width:2.5rem;text-align: center;border-right: 1px solid #eee;margin-top: 0.8125rem;}
+        .register li i img{height: 100%;}
+        .register li input{padding-left: 0.625rem;height: 100%;float: left;font-size: 0.8125rem;}
+        .yz{width: 66%!important;}
+        .yz_btn{width: 30%;float: right;background: #fb565c;height: 2.75rem;line-height: 2.75rem;font-size: 0.8125rem;color: #fff;text-align: center;border-radius: 1.375rem;}
+        .register .button{width: 100%;height:2.5rem;background: #fb565c;font-size: 0.8125rem;color: #fff;line-height: 2.5rem;text-align: center;border-radius: 1.25rem;margin-top: 3.125rem;float: left;}
+	</style>
+	<body >
+		<ul class="register">
+			<li><i><img src="images/user.png" alt="" /></i><input type="text" id="account" placeholder="请输入手机号"/></li>
+			<li><i><img src="images/password.png" alt="" /></i><input type="password" id="password" placeholder="请输入6-12位密码"/></li>
+			<li class="yz"><i><img src="images/yz.png" alt="" /></i><input type="text"  id="validate" placeholder="请输入验证码"/></li>
+			
+			<button class="yz_btn" id="btn" type="button">发送验证码</button>
+			<div class="button" id="registerApp">注册</div>
+		</ul>
+		 
+	</body>
+	<script>
+	function getQueryString(name) {
+	   	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	   	var r = window.location.search.substr(1).match(reg);
+	   	if (r != null)
+	   		return unescape(r[2]);
+	   	return null;
+	   }
+	//判断手机号
+	   var moble = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/ ;
+	   var psd = /^(?![0-9]*$)[a-zA-Z0-9]{6,20}$/ ;
+	  var inviteUserId = getQueryString("inviteUserId");
+	   $('#registerApp').bind('click',function(){
+		   var account = $("#account").val();
+		   var password = $("#password").val();
+		   var validate = $("#validate").val();
+		   if(account ==null){
+			   layer.msg("请输入手机号码");
+			   return;
+		   }
+		   if(password ==null){
+			   layer.msg("请输入密码");
+			   return;
+		   }
+		   if(!moble.test(account)){
+			   layer.msg("请输入正确的手机号码");
+			   return;
+		   }
+		   if(!psd.test(password)){
+			   layer.msg("密码格式为6-20位字母和数字组合");
+			   return;
+		   }
+			  $.ajax({
+			   		type : 'post',
+			   		url :BASE_URL+'/f/app/login/registerInvite',
+			   		async : false,
+			   		timeout : 10000,
+			   		data :　{
+			   			"inviteUserId":inviteUserId,
+			   			"account":account,
+			   			"password":password,
+			   			"validate":validate,
+			   			
+			   		},
+			   		success : function(data) {
+			   			if (data.status == 0) {
+			   				layer.msg("恭喜您注册成功，请前往应用商店下载享受更多服务");
+			   			} else {
+			   				layer.msg(data.msg);
+			   			}
+			   			return false;
+			   		}
+			   	});
+		});
+
+	function  sendSMSForRegister(){
+		var account = $("#account").val();
+		 if(!moble.test(account)){
+			   layer.msg("请输入正确的手机号码");
+			   return;
+		   }
+		$.ajax({
+	   		type : 'post',
+	   		url :BASE_URL+'/f/app/login/sendSMSForRegister',
+	   		async : false,
+	   		timeout : 10000,
+	   		data :　{
+	   			"account":account,
+	   		},
+	   		success : function(data) {
+	   			if (data.status == 0) {
+	   				layer.msg(data.data)
+	   			} else {
+	   				/* layer.msg(data.msg); */
+	   				layer.msg(data.data);
+	   			}
+	   			return false;
+	   		}
+	   	});
+	}
+	$(function(){
+		/* $(".yz").click(function(){
+			layer.msg("请输入正确的验证码")
+		}) */
+		function invokeSettime(obj){
+			    var wait=60;
+			    settime(obj);
+			    function settime(obj) {
+			        if (wait == 0) {
+			            $(obj).attr("disabled",false);
+			            $(obj).html("获取验证码");
+			            wait = 60;
+			            return;
+			        } else {
+			            $(obj).attr("disabled",true);
+			            $(obj).html("重新发送(" + wait + ")");
+			            wait--;
+			        }
+			        setTimeout(function() {
+			                    settime(obj) }
+			                ,1000)
+			    }
+			    sendSMSForRegister();
+			}
+			
+			$('#btn').bind('click',function(){
+				var account = $("#account").val();
+				 if(!moble.test(account)){
+					   layer.msg("请输入正确的手机号码");
+					   return;
+				   }
+				invokeSettime(this);
+			})
+	})
+	</script>
+</html>

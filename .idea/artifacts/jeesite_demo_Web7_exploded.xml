@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="jeesite_demo:Web7 exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/jeesite_demo_Web7_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="jeesite_demo/web/Web7" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="jeesite_demo" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

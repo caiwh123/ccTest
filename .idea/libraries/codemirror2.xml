@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="codemirror2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/cqcitem/WEB-INF/classes/WEB-INF/classes/view/static/scripts/codemirror.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

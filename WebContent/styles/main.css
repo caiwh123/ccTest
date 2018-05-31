@@ -1,0 +1,205 @@
+@charset "utf-8";
+/* Created 2011-3-26, Designer Peng Zhang, Version of 1.0 */
+
+/* main Style| 主体样式 */
+
+#main{ float: left; margin: 0; padding: 0; width: 100%;}
+
+/* menu Style| 二级导航菜单样式 */
+#submenu{
+	background: url(../images/left_bg.gif) repeat-y left top;
+	border-right: 1px solid #a0a0a0;
+	float: left;
+	height: 600px;
+	width: 150px;
+}
+#submenu ul{
+	margin-top: 2px; 
+	width: 100%;
+}
+#submenu li{ background: url(../images/menu_normal.gif) no-repeat center top; float: left; }
+#submenu li#current{ background: url(../images/menu_focus.gif) no-repeat center top;}
+#submenu a{ color: #555; display: block; line-height: 30px; padding: 0 10px 0 35px ; width: 105px;}
+a.ico_mTask{ background: url(../images/ico_mTask.png) no-repeat 10px center;}
+a.ico_mReport{ background: url(../images/ico_mReport.png) no-repeat 10px center;}
+a.ico_mSetting{ background: url(../images/ico_mSetting.png) no-repeat 10px center;}
+a.ico_mAlert{ background: url(../images/ico_mAlert.png) no-repeat 10px center;}
+a.ico_mImport{ background: url(../images/ico_mImport.png) no-repeat 10px center;}
+a.ico_mMessage{ background: url(../images/ico_mMsg.png) no-repeat 10px center;}
+a.ico_mLog{ background: url(../images/ico_mLog.png) no-repeat 10px center;}
+a.ico_mCustom{ background: url(../images/ico_mCustom.png) no-repeat 10px center;}
+#treePlan{
+	background: #fff;
+	border-bottom: 1px solid #c5c5c5;
+	float: left;
+	height:400px;
+	width: 100%;
+}
+.treeSearch{
+	background: #f5f5f5 url(../images/line_blue.gif) repeat-x left top;
+	border-bottom: 1px solid #c5c5c5;
+	float: left;
+	height: 40px;
+	width: 100%;
+}
+#treeContent{
+	background: #fff;
+	border: none;
+	float: left;
+	height: 360px;
+	overflow: auto;
+	width: 100%;
+}
+#treeContent ul li {background: #fff; border: none;}
+
+/* workarea Style| 工作区样式 */
+#workArea{
+	background: #e6e6e6 url(../images/contentbg.gif) repeat-y left top;
+	float: left;
+	height: 600px;
+	width: 100%;
+}
+.addressBar{
+	background: url(../images/address_bg.gif) repeat-x left top;
+	float: left;
+	height: 32px;
+	padding-top: 2px;
+	line-height: 30px;
+	width: 100%;
+}
+.address{ float: left; padding-left: 6px; width: 40%;}
+.alertInfo{ float: right; padding-right: 10px; text-align: right; width: 50%;}
+.btnHome{
+	background: url(../images/ico_bHome.png) no-repeat center center;
+	display: block;
+	float: left;
+	height: 28px;
+	width: 24px;
+}
+.toolbar{ height: 20px; line-height: 20px; width: 100%;}
+a.btnAdd{
+	background: url(../images/btnAdd_normal.png) no-repeat center center;
+	display: block;
+	float: left;
+	height: 20px;
+	width: 20px;
+}
+a:hover.btnAdd{background: url(../images/btnAdd_hover.png) no-repeat center center;}
+a.btnDrop{
+	background: url(../images/btnDrop_normal.png) no-repeat center center;
+	display: block;
+	float: left;
+	height: 20px;
+	width: 20px;
+}
+a:hover.btnDrop{background: url(../images/btnDrop_hover.png) no-repeat center center;}
+a.btnDelete{
+	background: url(../images/btnDelete_normal.png) no-repeat center center;
+	display: block;
+	height: 20px;
+	width: 20px;
+}
+a:hover.btnDelete{background: url(../images/btnDelete_hover.png) no-repeat center center;}
+
+a.icoListSuccess{
+	background: url(../images/ico_Success.png) no-repeat center center;
+	display: block;
+	height: 20px;
+	width: 20px;
+}
+a.icoListWarning{
+	background: url(../images/ico_Warning2.png) no-repeat center center;
+	display: block;
+	height: 20px;
+	width: 20px;
+}
+a.icoListAlert1{
+	background: url(../images/ico_Warning.png) no-repeat center center;
+	display: block;
+	height: 20px;
+	width: 20px;
+}
+a.icoListAlert2{
+	background: url(../images/ico_Warning3.png) no-repeat center center;
+	display: block;
+	height: 20px;
+	width: 20px;
+}
+a.icoListRun{
+	background: url(../images/ico_Run.png) no-repeat center center;
+	display: block;
+	height: 20px;
+	width: 20px;
+}
+a.icoListWait{
+	background: url(../images/ico_Wait.png) no-repeat center center;
+	display: block;
+	float: left;
+	height: 20px;
+	width: 20px;
+}
+a.icoListStop{
+	background: url(../images/ico_Stop.png) no-repeat center center;
+	display: block;
+	float: left;
+	height: 20px;
+	width: 20px;
+}
+
+.icoAlert1{
+	background: url(../images/ico_Warning.png) no-repeat left center;
+	padding-left: 20px;
+	width: auto;
+}
+.icoAlert2{
+	background: url(../images/ico_Warning3.png) no-repeat left center;
+	padding-left: 20px;
+	width: auto;
+}
+
+#content{ float: left; padding: 4px; width: 99%;}
+.contentStyle{ background: #fff; border: 1px solid #c3c3c3; float: left; width: 100%;}
+.titleStyle{ background:url(../images/titlebg.gif) repeat-x left top; height: 29px; line-height: 29px; width: 100%; }
+.titleStyle ul{ width: 80%;}
+.titleStyle li{ float: left;}
+.titleStyle a{ color: #555; display: block; padding: 0 15px; text-align: center;}
+.titleStyle a#current{
+	border-right: 1px solid #c3c3c3; 
+	background: url(../images/titlebg_focus.gif) repeat-x left top; 
+	color: #222; 
+	display: block; 
+	padding: 0 15px; 
+	text-align: center;
+}
+.titleStyle a#current2{
+	border-left: 1px solid #c3c3c3; 
+	border-right: 1px solid #c3c3c3; 
+	background: url(../images/titlebg_focus.gif) repeat-x left top; 
+	color: #222; 
+	display: block; 
+	padding: 0 15px; 
+	text-align: center;
+}
+.titleStyle a:hover#current{ text-decoration: none;}
+.listPlan{ float: left; width: 100%;}
+.listPlan2{ float: left; margin: 10px 0; width: 100%;}
+.listPlan3{ float: left; padding: 10px 0; overflow: auto; height: 360px;  width: 100%;}
+.listReport{ background: #f5f5f5; border: 1px solid #bbb; float: left; margin: 10px 8%; padding: 0 0 8px 0; width: 84%;}
+.btnBar{ background: #f5f5f5; border-top: 1px solid #ccc; float: left; height: 50px; text-align: center; width: 100%;}
+.btnBar2{ background: #f5f5f5; float: left; height: 50px; text-align: center; width: 100%;}
+
+/*Dialog box Styles | 对话框样式*/
+
+/*Wizard Styles | 向导提示框样式*/
+
+.wizardPlan{ background: #f5f5f5; border-bottom: 1px solid #ccc; height: 80px; margin: 0; width: 100%; }
+.wizardPlan ul{ float: left; margin: 10px 0 10px 40px; width: 640px;}
+.wizardPlan li{ float: left; font-weight: bold; height: 36px; margin: 0 5px; padding: 24px 0 0 60px; width: 140px}
+.step1{background: url(../images/step1.png) no-repeat left top; color: #888; }
+.step2{background: url(../images/step2.png) no-repeat left top; color: #888; }
+.step3{background: url(../images/step3.png) no-repeat left top; color: #888; }
+.step4{background: url(../images/step4.png) no-repeat left top; color: #888; }
+.step1c{background: url(../images/step1c.png) no-repeat left top; }
+.step2c{background: url(../images/step2c.png) no-repeat left top; }
+.step3c{background: url(../images/step3c.png) no-repeat left top; }
+.step4c{background: url(../images/step4c.png) no-repeat left top; }

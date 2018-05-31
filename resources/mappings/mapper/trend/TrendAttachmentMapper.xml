@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+【】对象关系映射 配置 
+ @author AutoCode 309444359@qq.com
+ @date 2017-10-16 14:54:49
+ -->
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.bluemobi.dao.trend.TrendAttachmentDao">
+
+	<resultMap id="trendAttachmentResultMap" type="com.bluemobi.po.trend.TrendAttachment">
+		<id property="attachmentid" column="ATTACHMENTID" />
+       <result property="userid" column="USERID" />
+       <result property="title" column="TITLE" />
+       <result property="description" column="DESCRIPTION" />
+       <result property="label" column="LABEL" />
+       <result property="mediatype" column="MEDIATYPE" />
+       <result property="mimetype" column="MIMETYPE" />
+       <result property="suffix" column="SUFFIX" />
+       <result property="imageable" column="IMAGEABLE" />
+       <result property="imageWidth" column="IMAGE_WIDTH" />
+       <result property="imageHeight" column="IMAGE_HEIGHT" />
+       <result property="ctime" column="CTIME" />
+       <result property="mtime" column="MTIME" />
+       <result property="filepath" column="FILEPATH" />
+       <result property="filesize" column="FILESIZE" />
+       <result property="hashcode" column="HASHCODE" />
+       <result property="status" column="STATUS" />
+       <result property="rev" column="REV" />
+	</resultMap>
+	<resultMap id="mapResultMap"  type="java.util.HashMap" extends="trendAttachmentResultMap"></resultMap>
+	<resultMap id="pageResultMap"  type="java.util.HashMap" extends="trendAttachmentResultMap"></resultMap>
+	
+	
+	<insert id="insert" parameterType="com.bluemobi.po.trend.TrendAttachment">
+	   insert into TREND_ATTACHMENT (
+	     ATTACHMENTID,
+	     USERID,
+	     TITLE,
+	     DESCRIPTION,
+	     LABEL,
+	     MEDIATYPE,
+	     MIMETYPE,
+	     SUFFIX,
+	     IMAGEABLE,
+	     IMAGE_WIDTH,
+	     IMAGE_HEIGHT,
+	     CTIME,
+	     MTIME,
+	     FILEPATH,
+	     FILESIZE,
+	     HASHCODE,
+	     STATUS,
+	     REV
+	   )values (
+	     #{attachmentid,jdbcType=DECIMAL},
+	     #{userid,jdbcType=DECIMAL},
+	     #{title,jdbcType=VARCHAR},
+	     #{description,jdbcType=VARCHAR},
+	     #{label,jdbcType=VARCHAR},
+	     #{mediatype,jdbcType=VARCHAR},
+	     #{mimetype,jdbcType=VARCHAR},
+	     #{suffix,jdbcType=VARCHAR},
+	     #{imageable,jdbcType=DECIMAL},
+	     #{imageWidth,jdbcType=DECIMAL},
+	     #{imageHeight,jdbcType=DECIMAL},
+	     #{ctime,jdbcType=VARCHAR},
+	     #{mtime,jdbcType=VARCHAR},
+	     #{filepath,jdbcType=VARCHAR},
+	     #{filesize,jdbcType=DECIMAL},
+	     #{hashcode,jdbcType=VARCHAR},
+	     #{status,jdbcType=DECIMAL},
+	     #{rev,jdbcType=DECIMAL}
+	   )
+	</insert>
+
+	<update id="update" parameterType="com.bluemobi.po.trend.TrendAttachment">
+		update TREND_ATTACHMENT
+		<set>
+			<if test="attachmentid != null">
+				ATTACHMENTID=#{attachmentid,jdbcType=DECIMAL},
+			</if>
+			<if test="userid != null">
+				USERID=#{userid,jdbcType=DECIMAL},
+			</if>
+			<if test="title != null">
+				TITLE=#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				DESCRIPTION=#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="label != null">
+				LABEL=#{label,jdbcType=VARCHAR},
+			</if>
+			<if test="mediatype != null">
+				MEDIATYPE=#{mediatype,jdbcType=VARCHAR},
+			</if>
+			<if test="mimetype != null">
+				MIMETYPE=#{mimetype,jdbcType=VARCHAR},
+			</if>
+			<if test="suffix != null">
+				SUFFIX=#{suffix,jdbcType=VARCHAR},
+			</if>
+			<if test="imageable != null">
+				IMAGEABLE=#{imageable,jdbcType=DECIMAL},
+			</if>
+			<if test="imageWidth != null">
+				IMAGE_WIDTH=#{imageWidth,jdbcType=DECIMAL},
+			</if>
+			<if test="imageHeight != null">
+				IMAGE_HEIGHT=#{imageHeight,jdbcType=DECIMAL},
+			</if>
+			<if test="ctime != null">
+				CTIME=#{ctime,jdbcType=VARCHAR},
+			</if>
+			<if test="mtime != null">
+				MTIME=#{mtime,jdbcType=VARCHAR},
+			</if>
+			<if test="filepath != null">
+				FILEPATH=#{filepath,jdbcType=VARCHAR},
+			</if>
+			<if test="filesize != null">
+				FILESIZE=#{filesize,jdbcType=DECIMAL},
+			</if>
+			<if test="hashcode != null">
+				HASHCODE=#{hashcode,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS=#{status,jdbcType=DECIMAL},
+			</if>
+			<if test="rev != null">
+				REV=#{rev,jdbcType=DECIMAL},
+			</if>
+		</set>
+		<where>
+			ATTACHMENTID=#{attachmentid} 
+		</where>
+	</update>
+
+	<delete id="delete" parameterType="map">
+	   delete from 
+	     TREND_ATTACHMENT 
+	   where 
+	    ATTACHMENTID=#{attachmentid} 
+	</delete>
+
+	<select id="selectObject" parameterType="map" resultMap="trendAttachmentResultMap">
+	   select 
+	    ATTACHMENTID,
+	    USERID,
+	    TITLE,
+	    DESCRIPTION,
+	    LABEL,
+	    MEDIATYPE,
+	    MIMETYPE,
+	    SUFFIX,
+	    IMAGEABLE,
+	    IMAGE_WIDTH,
+	    IMAGE_HEIGHT,
+	    CTIME,
+	    MTIME,
+	    FILEPATH,
+	    FILESIZE,
+	    HASHCODE,
+	    STATUS,
+	    REV
+	   from TREND_ATTACHMENT
+	   where 
+	    ATTACHMENTID=#{attachmentid} 
+	</select>
+	
+	<select id="selectObjectList" parameterType="map" resultMap="trendAttachmentResultMap">
+	   select 
+	     ATTACHMENTID,
+	     USERID,
+	     TITLE,
+	     DESCRIPTION,
+	     LABEL,
+	     MEDIATYPE,
+	     MIMETYPE,
+	     SUFFIX,
+	     IMAGEABLE,
+	     IMAGE_WIDTH,
+	     IMAGE_HEIGHT,
+	     CTIME,
+	     MTIME,
+	     FILEPATH,
+	     FILESIZE,
+	     HASHCODE,
+	     STATUS,
+	     REV
+	   from TREND_ATTACHMENT
+	   <where>
+	     <if test="attachmentid != null">
+	        ATTACHMENTID=#{attachmentid}
+	     </if>
+	     <if test="userid != null">
+	        and USERID=#{userid}
+	     </if>
+	     <if test="title != null">
+	        and TITLE=#{title}
+	     </if>
+	     <if test="description != null">
+	        and DESCRIPTION=#{description}
+	     </if>
+	     <if test="label != null">
+	        and LABEL=#{label}
+	     </if>
+	     <if test="mediatype != null">
+	        and MEDIATYPE=#{mediatype}
+	     </if>
+	     <if test="mimetype != null">
+	        and MIMETYPE=#{mimetype}
+	     </if>
+	     <if test="suffix != null">
+	        and SUFFIX=#{suffix}
+	     </if>
+	     <if test="imageable != null">
+	        and IMAGEABLE=#{imageable}
+	     </if>
+	     <if test="imageWidth != null">
+	        and IMAGE_WIDTH=#{imageWidth}
+	     </if>
+	     <if test="imageHeight != null">
+	        and IMAGE_HEIGHT=#{imageHeight}
+	     </if>
+	     <if test="ctime != null">
+	        and CTIME=#{ctime}
+	     </if>
+	     <if test="mtime != null">
+	        and MTIME=#{mtime}
+	     </if>
+	     <if test="filepath != null">
+	        and FILEPATH=#{filepath}
+	     </if>
+	     <if test="filesize != null">
+	        and FILESIZE=#{filesize}
+	     </if>
+	     <if test="hashcode != null">
+	        and HASHCODE=#{hashcode}
+	     </if>
+	     <if test="status != null">
+	        and STATUS=#{status}
+	     </if>
+	     <if test="rev != null">
+	        and REV=#{rev}
+	     </if>
+	   </where>
+	</select>
+
+	<select id="selectMap" parameterType="map" resultMap="mapResultMap">
+	   select 
+	    ATTACHMENTID,
+	    USERID,
+	    TITLE,
+	    DESCRIPTION,
+	    LABEL,
+	    MEDIATYPE,
+	    MIMETYPE,
+	    SUFFIX,
+	    IMAGEABLE,
+	    IMAGE_WIDTH,
+	    IMAGE_HEIGHT,
+	    CTIME,
+	    MTIME,
+	    FILEPATH,
+	    FILESIZE,
+	    HASHCODE,
+	    STATUS,
+	    REV
+	   from TREND_ATTACHMENT
+	   where 
+	    ATTACHMENTID=#{attachmentid} 
+	</select>
+
+	<select id="selectMapList" parameterType="map" resultMap="mapResultMap">
+	   select 
+	     ATTACHMENTID,
+	     USERID,
+	     TITLE,
+	     DESCRIPTION,
+	     LABEL,
+	     MEDIATYPE,
+	     MIMETYPE,
+	     SUFFIX,
+	     IMAGEABLE,
+	     IMAGE_WIDTH,
+	     IMAGE_HEIGHT,
+	     CTIME,
+	     MTIME,
+	     FILEPATH,
+	     FILESIZE,
+	     HASHCODE,
+	     STATUS,
+	     REV
+	   from TREND_ATTACHMENT
+	   <where>
+	     <if test="attachmentid != null">
+	        ATTACHMENTID=#{attachmentid}
+	     </if>
+	     <if test="userid != null">
+	        and USERID=#{userid}
+	     </if>
+	     <if test="title != null">
+	        and TITLE=#{title}
+	     </if>
+	     <if test="description != null">
+	        and DESCRIPTION=#{description}
+	     </if>
+	     <if test="label != null">
+	        and LABEL=#{label}
+	     </if>
+	     <if test="mediatype != null">
+	        and MEDIATYPE=#{mediatype}
+	     </if>
+	     <if test="mimetype != null">
+	        and MIMETYPE=#{mimetype}
+	     </if>
+	     <if test="suffix != null">
+	        and SUFFIX=#{suffix}
+	     </if>
+	     <if test="imageable != null">
+	        and IMAGEABLE=#{imageable}
+	     </if>
+	     <if test="imageWidth != null">
+	        and IMAGE_WIDTH=#{imageWidth}
+	     </if>
+	     <if test="imageHeight != null">
+	        and IMAGE_HEIGHT=#{imageHeight}
+	     </if>
+	     <if test="ctime != null">
+	        and CTIME=#{ctime}
+	     </if>
+	     <if test="mtime != null">
+	        and MTIME=#{mtime}
+	     </if>
+	     <if test="filepath != null">
+	        and FILEPATH=#{filepath}
+	     </if>
+	     <if test="filesize != null">
+	        and FILESIZE=#{filesize}
+	     </if>
+	     <if test="hashcode != null">
+	        and HASHCODE=#{hashcode}
+	     </if>
+	     <if test="status != null">
+	        and STATUS=#{status}
+	     </if>
+	     <if test="rev != null">
+	        and REV=#{rev}
+	     </if>
+	   </where>
+	</select>
+	
+	<select id="page" parameterType="map" resultMap="pageResultMap">
+	   select * from(
+            select * from (
+				select
+	           ATTACHMENTID,
+	           USERID,
+	           TITLE,
+	           DESCRIPTION,
+	           LABEL,
+	           MEDIATYPE,
+	           MIMETYPE,
+	           SUFFIX,
+	           IMAGEABLE,
+	           IMAGE_WIDTH,
+	           IMAGE_HEIGHT,
+	           CTIME,
+	           MTIME,
+	           FILEPATH,
+	           FILESIZE,
+	           HASHCODE,
+	           STATUS,
+	           REV,
+	           rownum r
+	       <include refid="pageCondition" />
+	   <![CDATA[
+	        )
+	        where r <= #{end}
+	   )
+       where r > #{begin}
+       ]]>
+	</select>
+
+	<select id="pageCount" parameterType="map" resultType="int">
+	   select count(1)
+	   <include refid="pageCondition" />
+	</select>
+
+	<sql id="pageCondition">
+	   from TREND_ATTACHMENT
+	   where 1 = 1
+	     <if test="attachmentid != null">
+	       and ATTACHMENTID=#{attachmentid}
+	     </if>
+	     <if test="userid != null">
+	       and USERID=#{userid}
+	     </if>
+	     <if test="title != null">
+	       and TITLE=#{title}
+	     </if>
+	     <if test="description != null">
+	       and DESCRIPTION=#{description}
+	     </if>
+	     <if test="label != null">
+	       and LABEL=#{label}
+	     </if>
+	     <if test="mediatype != null">
+	       and MEDIATYPE=#{mediatype}
+	     </if>
+	     <if test="mimetype != null">
+	       and MIMETYPE=#{mimetype}
+	     </if>
+	     <if test="suffix != null">
+	       and SUFFIX=#{suffix}
+	     </if>
+	     <if test="imageable != null">
+	       and IMAGEABLE=#{imageable}
+	     </if>
+	     <if test="imageWidth != null">
+	       and IMAGE_WIDTH=#{imageWidth}
+	     </if>
+	     <if test="imageHeight != null">
+	       and IMAGE_HEIGHT=#{imageHeight}
+	     </if>
+	     <if test="ctime != null">
+	       and CTIME=#{ctime}
+	     </if>
+	     <if test="mtime != null">
+	       and MTIME=#{mtime}
+	     </if>
+	     <if test="filepath != null">
+	       and FILEPATH=#{filepath}
+	     </if>
+	     <if test="filesize != null">
+	       and FILESIZE=#{filesize}
+	     </if>
+	     <if test="hashcode != null">
+	       and HASHCODE=#{hashcode}
+	     </if>
+	     <if test="status != null">
+	       and STATUS=#{status}
+	     </if>
+	     <if test="rev != null">
+	       and REV=#{rev}
+	     </if>
+	</sql>
+
+	
+</mapper> 
