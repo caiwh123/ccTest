@@ -47,6 +47,8 @@ public class JpushUtil {
         }
     }
 
+
+
     /**
      * 发送通知给所有用户
      * @param msgContent 消息内容
@@ -416,4 +418,3 @@ public class JpushUtil {
                 .build();
     }
 }
-
